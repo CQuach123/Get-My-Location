@@ -92,53 +92,53 @@ class LocationDetailsViewController: UITableViewController {
   }
 
   // MARK: - Actions
-  @IBAction func done() {
-    guard let mainView = navigationController?.parent?.view else { return }
-    let hudView = HudView.hud(inView: mainView, animated: true)
+    @IBAction func done() {
+        guard let mainView = navigationController?.parent?.view else { return }
+        let hudView = HudView.hud(inView: mainView, animated: true)
 
-    let location: Location
-    if let temp = locationToEdit {
-      hudView.text = "Updated"
-      location = temp
-    } else {
-      hudView.text = "Tagged"
-      location = Location(context: managedObjectContext)
-      location.photoID = nil
-    }
+        let location: Location
+        if let temp = locationToEdit {
+          hudView.text = "Updated"
+          location = temp
+        } else {
+          hudView.text = "Tagged"
+          location = Location(context: managedObjectContext)
+          location.photoID = nil
+        }
 
-    location.locationDescription = descriptionTextView.text
-    location.category = categoryName
-    location.latitude = coordinate.latitude
-    location.longitude = coordinate.longitude
-    location.date = date
-    location.placemark = placemark
-    // Save image
-    if let image = image {
-      // 1
-      if !location.hasPhoto {
-        location.photoID = Location.nextPhotoID() as NSNumber
-      }
-      // 2
-      if let data = image.jpegData(compressionQuality: 0.5) {
-        // 3
+        location.locationDescription = descriptionTextView.text
+        location.category = categoryName
+        location.latitude = coordinate.latitude
+        location.longitude = coordinate.longitude
+        location.date = date
+        location.placemark = placemark
+        // Save image
+        if let image = image {
+          // 1
+          if !location.hasPhoto {
+            location.photoID = Location.nextPhotoID() as NSNumber
+          }
+          // 2
+          if let data = image.jpegData(compressionQuality: 0.5) {
+            // 3
+            do {
+              try data.write(to: location.photoURL, options: .atomic)
+            } catch {
+              print("Error writing file: \(error)")
+            }
+          }
+        }
+        // Save data
         do {
-          try data.write(to: location.photoURL, options: .atomic)
+          try managedObjectContext.save()
+          afterDelay(0.6) {
+            hudView.hide()
+            self.navigationController?.popViewController(animated: true)
+          }
         } catch {
-          print("Error writing file: \(error)")
+          fatalCoreDataError(error)
         }
       }
-    }
-    // Save data
-    do {
-      try managedObjectContext.save()
-      afterDelay(0.6) {
-        hudView.hide()
-        self.navigationController?.popViewController(animated: true)
-      }
-    } catch {
-      fatalCoreDataError(error)
-    }
-  }
 
   @IBAction func cancel() {
     navigationController?.popViewController(animated: true)
@@ -151,29 +151,16 @@ class LocationDetailsViewController: UITableViewController {
   }
 
   // MARK: - Helper Methods
-  func string(from placemark: CLPlacemark) -> String {
-    var text = ""
-
-    if let tmp = placemark.subThoroughfare {
-      text += tmp + " "
-    }
-    if let tmp = placemark.thoroughfare {
-      text += tmp + ", "
-    }
-    if let tmp = placemark.locality {
-      text += tmp + ", "
-    }
-    if let tmp = placemark.administrativeArea {
-      text += tmp + " "
-    }
-    if let tmp = placemark.postalCode {
-      text += tmp + ", "
-    }
-    if let tmp = placemark.country {
-      text += tmp
-    }
-    return text
-  }
+    func string(from placemark: CLPlacemark) -> String {
+        var line = ""
+        line.add(text: placemark.subThoroughfare)
+        line.add(text: placemark.thoroughfare, separatedBy: " ")
+        line.add(text: placemark.locality, separatedBy: ", ")
+        line.add(text: placemark.administrativeArea, separatedBy: ", ")
+        line.add(text: placemark.postalCode, separatedBy: " ")
+        line.add(text: placemark.country, separatedBy: ", ")
+        return line
+      }
 
   func format(date: Date) -> String {
     return dateFormatter.string(from: date)

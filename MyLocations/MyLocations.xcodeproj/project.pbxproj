@@ -24,6 +24,8 @@
 		CABC99142B8131A900B6144D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC99132B8131A900B6144D /* LocationCell.swift */; };
 		CABC99162B81C21200B6144D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC99152B81C21200B6144D /* MapViewController.swift */; };
 		CABC99182B82DB2500B6144D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC99172B82DB2500B6144D /* UIImage+Resize.swift */; };
+		CABC991A2B82FC2E00B6144D /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC99192B82FC2E00B6144D /* String+AddText.swift */; };
+		CABC991C2B83EFC800B6144D /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = CABC991B2B83EFC800B6144D /* Sound.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		CABC99132B8131A900B6144D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		CABC99152B81C21200B6144D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CABC99172B82DB2500B6144D /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		CABC99192B82FC2E00B6144D /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
+		CABC991B2B83EFC800B6144D /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		CABC98E02B74706600B6144D = {
 			isa = PBXGroup;
 			children = (
+				CABC991B2B83EFC800B6144D /* Sound.caf */,
+				CABC99192B82FC2E00B6144D /* String+AddText.swift */,
 				CABC99172B82DB2500B6144D /* UIImage+Resize.swift */,
 				CABC990B2B808E8500B6144D /* Location+CoreDataClass.swift */,
 				CABC990C2B808E8500B6144D /* Location+CoreDataProperties.swift */,
@@ -160,6 +166,7 @@
 			files = (
 				CABC98FC2B74706800B6144D /* LaunchScreen.storyboard in Resources */,
 				CABC98F92B74706800B6144D /* Assets.xcassets in Resources */,
+				CABC991C2B83EFC800B6144D /* Sound.caf in Resources */,
 				CABC98F42B74706600B6144D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +190,7 @@
 				CABC98F72B74706600B6144D /* MyLocations.xcdatamodeld in Sources */,
 				CABC98EF2B74706600B6144D /* SceneDelegate.swift in Sources */,
 				CABC990D2B808E8500B6144D /* Location+CoreDataClass.swift in Sources */,
+				CABC991A2B82FC2E00B6144D /* String+AddText.swift in Sources */,
 				CABC99082B77276800B6144D /* HudView.swift in Sources */,
 				CABC99042B75F7FD00B6144D /* LocationDetailsViewController.swift in Sources */,
 			);
@@ -338,12 +346,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Add photos to your locations";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app lets you keep track of interesting places. It needs access to the GPS coordinates for your location.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Add photos to your locations";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "location-services";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,12 +378,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Add photos to your locations";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app lets you keep track of interesting places. It needs access to the GPS coordinates for your location.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Add photos to your locations";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "location-services";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
